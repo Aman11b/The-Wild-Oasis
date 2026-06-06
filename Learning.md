@@ -95,3 +95,28 @@ const Heading = styled.h1`
 export default Heading;
 
 ```
+
+- you can set a default type to any react component like this
+
+```bash
+  const Row = styled.div`
+    display: flex;
+    ${(props) =>
+      props.type === "horizontal" &&
+      css`
+        justify-content: space-between;
+        align-items: center;
+      `}
+
+    ${(props) =>
+      props.type === "vertical" &&
+      css`
+        flex-direction: column;
+        gap: 2rem;
+      `}
+  `;
+
+  Row.defaultProps = {
+    type: "vertical",
+  };
+```
