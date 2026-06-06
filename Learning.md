@@ -37,7 +37,7 @@ const GlobalStyles = createGlobalStyle``;
 export default GlobalStyles;
 ```
 
-> to incluyde this in application come to App.js,GlobalStyles needs to be added in the component tree but it cannot accept any children we want this to be sibling of StyledApp
+> to include this in application come to App.js,GlobalStyles needs to be added in the component tree but it cannot accept any children we want this to be sibling of StyledApp
 
 ```bash
     <>
@@ -48,4 +48,50 @@ export default GlobalStyles;
     </>
 ```
 
-> Advance usage is styled component ins theming by exporting <ThemeProvider> wrapper component whihc provied a theme to all react components underneath itself via the content API
+> Advance usage is styled component ins theming by exporting ThemeProvider wrapper component which provied a theme to all react components underneath itself via the content API
+
+- styled component props and css function
+
+```bash
+ <Heading as="h2">The Wild Oasis in h2</Heading>
+```
+
+```bash
+
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-constant-condition */
+
+import styled, { css } from "styled-components";
+
+// const text = css`
+//   text-align: center;
+//   ${10 > 5 && "background-color: yellow;"}
+// `;
+
+const Heading = styled.h1`
+  ${(props) =>
+    props.as === "h1" &&
+    css`
+      font-size: 3rem;
+      font-weight: 600;
+    `}
+
+  ${(props) =>
+    props.as === "h2" &&
+    css`
+      font-size: 2rem;
+      font-weight: 500;
+    `}
+
+      ${(props) =>
+    props.as === "h3" &&
+    css`
+      font-size: 1.5rem;
+      font-weight: 400;
+    `}
+  line-height:1.4
+`;
+
+export default Heading;
+
+```
