@@ -120,3 +120,35 @@ export default Heading;
     type: "vertical",
   };
 ```
+
+## What is SUPABASE
+
+- Service that allows developers to easily creaste a back end with a postgres database
+- Automatically creates a database and APIU so we can easily request and receice data from the server
+- no bacend development needed
+- supabase also comes with easy-to-use user authentication and file storage
+
+### Modeling State
+
+| State / Domain | Feature Categories                       |
+| -------------- | ---------------------------------------- |
+| Booking        | Bookings, Dashboard, Check-in, Check-out |
+| Cabins         | Cabin Management                         |
+| Guests         | Guest Management                         |
+| Settings       | Application Settings                     |
+| Users          | Authentication & User Management         |
+
+- All this satet will be global remote state ,stored withing Supabase
+- There will be on table for each state "Slice" in the database
+
+### The Bookings Table
+
+- Bookings are about a guest renting a cabin
+- So a boookins needs information about what guest is booking whihc cabin:we need to connect them
+- Supabase uses a Postgres DB,whihc is SQL (relational DB),So we join tables using foreign keys(guestID,CabinId)
+
+Booking > id,guestId,cabinId,....
+Guest > id,email,...
+Cabin > id, name,...
+
+> We connect a booking with a cabin by storing the cabin;s id(primary key) inside the booking cabin Id(Foreign key)
