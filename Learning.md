@@ -29,3 +29,23 @@ const H1 = styled.h1`
   padding: 20px;
 `;
 ```
+
+- to create global styles create a GlobalStyles.js file and pase the global css inside this
+
+```bash
+const GlobalStyles = createGlobalStyle``;
+export default GlobalStyles;
+```
+
+> to incluyde this in application come to App.js,GlobalStyles needs to be added in the component tree but it cannot accept any children we want this to be sibling of StyledApp
+
+```bash
+    <>
+      <GlobalStyles />
+      <StyledApp>
+        <H1>The Wild Oasis</H1>
+      </StyledApp>
+    </>
+```
+
+> Advance usage is styled component ins theming by exporting <ThemeProvider> wrapper component whihc provied a theme to all react components underneath itself via the content API
