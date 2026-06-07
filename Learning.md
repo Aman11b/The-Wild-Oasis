@@ -152,3 +152,57 @@ Guest > id,email,...
 Cabin > id, name,...
 
 > We connect a booking with a cabin by storing the cabin;s id(primary key) inside the booking cabin Id(Foreign key)
+
+## React Query (TanStack Query )
+
+- Powerful library for managing remote(server) state
+- Many features that allows us to write a lot less code,while also making the UX a lot better
+
+1. Data is stored in a cache
+2. Automatic loadinh and error state
+3. Automatic re-fetching to keep state synced
+4. pre-fetching(pagination - fetching data of next pages with current page)
+5. easy remote state mutation(updating)
+6. offline support
+
+- Needed becaused rempote state is fundamentally differently from regular UI state
+- other tools: SWR, Reduc, RTK, but RQ is most popular
+
+- installation react query
+
+```bash
+npm i @tanstack/react-query@4
+```
+
+- installing react dev tools
+
+```bash
+npm install @tanstack/react-query-devtools@4
+```
+
+- setting
+
+```bash
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
+
+<QueryClientProvider client={queryClient}>
+  <ReactQueryDevtools initialIsOpen={false} />
+  <GlobalStyles />
+  <BrowserRouter>
+    <Routes>
+      <Route element={<AppLayout />}>
+        <Route index element={<Navigate replace to="dashboard" />} />
+        <Route path="account" element={<Account />} />
+      </Route>
+      <Route path="login" element={<Login />} />
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
+  </BrowserRouter>
+</QueryClientProvider>
+```
