@@ -48,6 +48,7 @@ const Discount = styled.div`
 function CabinRow({ cabin }) {
   const { id, name, maxCapacity, regularPrice, discount, description, image } =
     cabin;
+    // console.log(cabin);
 
   const queryClint = useQueryClient();
 
@@ -58,7 +59,9 @@ function CabinRow({ cabin }) {
       toast.success("Cabin successfully deleted");
       queryClint.invalidateQueries({
         queryKey: ["cabins"],
+        
       });
+     
     },
     onError: (err) => toast.error(err.message),
   });

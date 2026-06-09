@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable*/
 import styled from "styled-components";
 
 import Input from "../../ui/Input";
@@ -67,7 +67,8 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({...data,image:data.image[0]});
+    console.log(data)
   }
 
   function onError(errors){
@@ -119,6 +120,7 @@ function CreateCabinForm() {
       <Textarea
           type="number"
           id="description"
+          disabled={isCreating}
           defaultValue=""
           {...register("description",{
             required:"This Field is required"
@@ -128,12 +130,14 @@ function CreateCabinForm() {
 
     
 
-      <FormRow label="Cabin photo" disabled={isCreating}>
-        <FileInput id="image" accept="image/*" />
+      <FormRow label="Cabin photo" >
+        <FileInput id="image" accept="image/*"   {...register("image",{
+            required:"This Field is required"
+          })} />
       </FormRow
       >
 
-      <FormRow disabled={isCreating}>
+      <FormRow >
         {/* type is an HTML attribute! */}
         <Button variation="secondary" type="reset">
           Cancel
