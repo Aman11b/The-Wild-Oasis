@@ -51,7 +51,7 @@ function CabinRow({ cabin }) {
   const [showForm,setShowForm]=useState(false);
   const { id, name, maxCapacity, regularPrice, discount, description, image } =
     cabin;
-    console.log(cabin);
+    // console.log(cabin);
 
   const queryClint = useQueryClient();
 
@@ -78,13 +78,13 @@ function CabinRow({ cabin }) {
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
       <div>
-      <button onClick={()=>setShowForm((show)=>!show)}>Edit</button>
-      <button onClick={() => mutate(id)} disabled={isDeleting}>
-        Delete
-      </button>
+        <button onClick={()=>setShowForm((show)=>!show)}>Edit</button>
+        <button onClick={() => mutate(id)} disabled={isDeleting}>
+          Delete
+        </button>
       </div>
     </TableRow>
-    {showForm && <CreateCabinForm/>}
+    {showForm && <CreateCabinForm cabinToEdit={cabin}/>}
     </>
   );
 }

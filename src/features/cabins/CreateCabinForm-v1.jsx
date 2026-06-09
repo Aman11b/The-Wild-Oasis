@@ -11,23 +11,16 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 
 import { useForm } from "react-hook-form";
-import { createEditCabin } from "../../services/apiCabins";
+import { createCabin } from "../../services/apiCabins";
 
 
-function CreateCabinForm({cabinToEdit={}}) {
-  const {id:editId,...editValues}=cabinToEdit;
-  const isEditSession=Boolean(editId);
-
-
-  const { register, handleSubmit, reset, getValues,formState } = useForm({
-    defaultValues: isEditSession ? editValues : {}
-  });
-
+function CreateCabinForm() {
+  const { register, handleSubmit, reset, getValues,formState } = useForm();
   const queryClient = useQueryClient();
   const {errors}=formState;
 
   const { mutate, isLoading: isCreating } = useMutation({
-    mutationFn: createEditCabin,
+    mutationFn: createCabin,
     onSuccess: () => {
       toast.success("New Cabin successfully created");
       queryClient.invalidateQueries({
@@ -39,17 +32,13 @@ function CreateCabinForm({cabinToEdit={}}) {
   });
 
   function onSubmit(data) {
-    const image=typeof data.image==="string"?data.image:data.image?.[0];
-    console.log("FINAL IMAGE:", image);
-    mutate({...data,image});
-    // console.log(data)
+    mutate({...data,image:data.image[0]});
+    console.log(data)
   }
 
   function onError(errors){
     // console.log(errors)
   }
-
-
 
   return (
     <Form onSubmit={handleSubmit(onSubmit,onError)}>
@@ -108,7 +97,7 @@ function CreateCabinForm({cabinToEdit={}}) {
 
       <FormRow label="Cabin photo" >
         <FileInput id="image" accept="image/*"   {...register("image",{
-            required:isEditSession ? false: "This Field is required"
+            required:"This Field is required"
           })} />
       </FormRow
       >
@@ -118,7 +107,7 @@ function CreateCabinForm({cabinToEdit={}}) {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button disabled={isCreating}>{isEditSession ?"Edit Cabin":"Create new Cabin"}</Button>
+        <Button disabled={isCreating}>Add cabin</Button>
       </FormRow
       >
     </Form>
