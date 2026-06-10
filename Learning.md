@@ -206,3 +206,19 @@ const queryClient = new QueryClient({
   </BrowserRouter>
 </QueryClientProvider>
 ```
+## An overview of Reusability in react
+
+# how to reuse code in react
+- ui 
+1. components and props(use props as a component API to enable custom behaviour.Can be stateless ,staeful or structural components)
+2. Childrem prop( to cutomize the component's content)
+
+- stateful logic(logic with hooks)
+1. custom hooks
+
+# render props pattern
+- For complete control over what the component renders,by passing in a function that tells the component what to render.was more common before hooks but still useful
+
+# compound component pattern
+- we will have multiple components that play together in order ot create one big super component
+- for very self-contained component that need/want to manage their own state.Compound components are like fancy super components
