@@ -231,3 +231,7 @@ const queryClient = new QueryClient({
 > what to do if you got a componet form 3rd party lib and you want to implement few designes whihc you created without chaning the components
 - A HOC is simply a component taht takes in another component and then return a new component that is better so an enhanced version of the initial component
 - its name start with with<Name> and it takes a component and returns a new one with additional functinality
+
+
+### React Portal
+- The main reason why a portal becomes necssary is in order ot avoid confilcts with CSS property overflow set to hidden
