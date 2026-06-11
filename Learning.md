@@ -222,3 +222,12 @@ const queryClient = new QueryClient({
 # compound component pattern
 - we will have multiple components that play together in order ot create one big super component
 - for very self-contained component that need/want to manage their own state.Compound components are like fancy super components
+
+
+## Render Props Pattern
+- passing prop called render which a function that component uses to know what it should render and how to do it.
+
+## Higher-Order Components (HOC)
+> what to do if you got a componet form 3rd party lib and you want to implement few designes whihc you created without chaning the components
+- A HOC is simply a component taht takes in another component and then return a new component that is better so an enhanced version of the initial component
+- its name start with with<Name> and it takes a component and returns a new one with additional functinality
