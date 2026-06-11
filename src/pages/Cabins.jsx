@@ -1,17 +1,11 @@
-/* eslint-disable no-unused-vars */
+// /* eslint-disable no-unused-vars */
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
-import Button from "../ui/Button";
+
 import CabinTable from "../features/cabins/CabinTable";
-import { useState } from "react";
-import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import AddCabin from "../features/cabins/AddCabin";
 
 function Cabins() {
-  // useEffect(function () {
-  //   getCabin().then((data) => console.log(data));
-  // }, []);
-
-  const [showForm, setShowForm] = useState(false);
 
   return (
     <>
@@ -21,11 +15,7 @@ function Cabins() {
       </Row>
       <Row>
         <CabinTable />
-        <Button onClick={() => setShowForm((show) => !show)}>
-          {" "}
-          Add new cabin
-        </Button>
-        {showForm && <CreateCabinForm />}
+        <AddCabin/>
       </Row>
     </>
   );
