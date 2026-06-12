@@ -206,32 +206,72 @@ const queryClient = new QueryClient({
   </BrowserRouter>
 </QueryClientProvider>
 ```
+
 ## An overview of Reusability in react
 
-# how to reuse code in react
-- ui 
+### how to reuse code in react
+
+- ui
+
 1. components and props(use props as a component API to enable custom behaviour.Can be stateless ,staeful or structural components)
 2. Childrem prop( to cutomize the component's content)
 
 - stateful logic(logic with hooks)
+
 1. custom hooks
 
-# render props pattern
+## render props pattern
+
 - For complete control over what the component renders,by passing in a function that tells the component what to render.was more common before hooks but still useful
 
-# compound component pattern
+### compound component pattern
+
 - we will have multiple components that play together in order ot create one big super component
 - for very self-contained component that need/want to manage their own state.Compound components are like fancy super components
 
-
 ## Render Props Pattern
+
 - passing prop called render which a function that component uses to know what it should render and how to do it.
 
 ## Higher-Order Components (HOC)
-> what to do if you got a componet form 3rd party lib and you want to implement few designes whihc you created without chaning the components
-- A HOC is simply a component taht takes in another component and then return a new component that is better so an enhanced version of the initial component
-- its name start with with<Name> and it takes a component and returns a new one with additional functinality
 
+> what to do if you got a componet form 3rd party lib and you want to implement few designes whihc you created without chaning the components
+
+- A HOC is simply a component taht takes in another component and then return a new component that is better so an enhanced version of the initial component
+- its name start with "with" name and it takes a component and returns a new one with additional functinality
 
 ### React Portal
+
 - The main reason why a portal becomes necssary is in order ot avoid confilcts with CSS property overflow set to hidden
+
+### useRef piculiarity
+
+```bash
+ const ref = useRef();
+  useEffect(
+    function () {
+      function handleClick(e) {
+        if (ref.current && !ref.current.contains(e.target)) close();
+      }
+      document.addEventListener("click", handleClick);
+      return () => document.removeEventListener("click", handleClick);
+    },
+    [close],
+  );
+
+  if (name !== openName) return null;
+  return createPortal(
+    <Overlay>
+      <StyledModal ref={ref}>
+```
+
+> when im clicking outside the Modal it closed but once it is cloed the cabin or show table dont show even after clicking why?
+
+- when i click button, Event Bubble Up all the way to DOM untill it reaches that Modal Window and os then the click is basically delected outside the modal window which is immediately closed
+
+- dont listen to this events at bubbling state but on capturing state
+
+```bash
+  document.addEventListener("click", handleClick,true);
+      return () => document.removeEventListener("click", handleClick,true);
+```
