@@ -244,7 +244,9 @@ const queryClient = new QueryClient({
 
 - The main reason why a portal becomes necssary is in order ot avoid confilcts with CSS property overflow set to hidden
 
-### useRef piculiarity
+### peculiarity due to Element flow
+
+> when im clicking outside the Modal it closed but once it is cloed the cabin or show table dont show even after clicking why?
 
 ```bash
  const ref = useRef();
@@ -264,8 +266,6 @@ const queryClient = new QueryClient({
     <Overlay>
       <StyledModal ref={ref}>
 ```
-
-> when im clicking outside the Modal it closed but once it is cloed the cabin or show table dont show even after clicking why?
 
 - when i click button, Event Bubble Up all the way to DOM untill it reaches that Modal Window and os then the click is basically delected outside the modal window which is immediately closed
 
