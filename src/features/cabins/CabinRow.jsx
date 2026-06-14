@@ -85,7 +85,9 @@ function CabinRow({ cabin }) {
         <Modal>
           <Menus.Menu>
             <Menus.Toggle id={id} />
+
             {/**------------------------------------------- */}
+
             <Menus.List id={id}>
               <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
                 Duplicate
@@ -99,6 +101,7 @@ function CabinRow({ cabin }) {
                 <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
               </Modal.Open>
             </Menus.List>
+
             {/**------------------------------------------- */}
 
             <Modal.Window name="edit">

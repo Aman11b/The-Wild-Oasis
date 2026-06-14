@@ -275,3 +275,47 @@ const queryClient = new QueryClient({
   document.addEventListener("click", handleClick,true);
       return () => document.removeEventListener("click", handleClick,true);
 ```
+
+### transient prop
+
+-A transient prop is a special feature in styled-components that lets you pass props to a styled component without forwarding them to the actual DOM element.It is created by prefixing the prop name with a dollar sign ($).
+
+```bash
+<FilterButton active={true}>
+  All
+</FilterButton>
+
+const FilterButton = styled.button`
+  ${(props) =>
+    props.active &&
+    css`
+      background-color: blue;
+    `}
+`;
+
+```
+
+> Styled-components uses active for styling, but it also forwards it to the HTML button:
+
+```bash
+<button active="true">All</button>
+```
+
+-Transient prop solution
+
+```bash
+<FilterButton $active={true}>
+  All
+</FilterButton>
+
+const FilterButton = styled.button`
+  ${(props) =>
+    props.$active &&
+    css`
+      background-color: blue;
+    `}
+`;
+
+```
+
+> Now styled-components uses $active internally for styling, but does not pass it to the DOM.
