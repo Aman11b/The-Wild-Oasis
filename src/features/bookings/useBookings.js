@@ -12,14 +12,20 @@ export function useBookings() {
       ? null
       : { field: "status", value: filterValue };
   // { field: "totalPrice", value: 5000, method: "gte" };
+
+  // sort
+
+  const sortByRow = searchParams.get("sortBy") || "startDate-desc";
+  const [field, direction] = sortByRow.split("-");
+  const sortBy = { field, direction };
   const {
     isLoading,
     data: bookings,
     error,
   } = useQuery({
     // it is working as a dependency array
-    queryKey: ["bookings", filter],
-    queryFn: () => getBookings({ filter }),
+    queryKey: ["bookings", filter, sortBy],
+    queryFn: () => getBookings({ filter, sortBy }),
   });
 
   return { isLoading, error, bookings };
