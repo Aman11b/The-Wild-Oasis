@@ -319,3 +319,9 @@ const FilterButton = styled.button`
 ```
 
 > Now styled-components uses $active internally for styling, but does not pass it to the DOM.
+
+### Error Boundry
+
+> try and catch for react
+
+- catch error only while react is rendering
